@@ -4,12 +4,13 @@ import logging
 from aiogram import Dispatcher, Bot
 
 from config import settings
-from handlers.handlers import router as form_router
+from routers.commands import router as commands_router
+from routers.form import router as form_router
 
 bot_token = settings.BOT_TOKEN
 dp = Dispatcher()
 
-dp.include_router(form_router)
+dp.include_routers(commands_router, form_router)
 
 
 async def main() -> None:

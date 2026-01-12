@@ -2,6 +2,8 @@ from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message
 
+from src.utils import lets_start_keyboard
+
 router = Router()
 
 
@@ -13,6 +15,7 @@ async def start_handler(msg: Message) -> None:
     await msg.answer(
         f'Привет, <b>{msg.from_user.full_name}</b>!\nЯ помогу найти тебе пару или друзей. 👫',
         parse_mode='HTML',
+        reply_markup=lets_start_keyboard()
     )
 
 
@@ -22,8 +25,3 @@ async def help_handler(msg: Message) -> None:
         f'Вы нажали команду /help',
         parse_mode='HTML',
     )
-
-
-@router.message(F.text == 'Давай начнём!')
-async def lets_start_handler(msg: Message) -> None:
-    await msg.answer('Как тебя зовут?')
