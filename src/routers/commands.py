@@ -1,4 +1,4 @@
-from aiogram import Router, F
+from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message
 
@@ -15,13 +15,13 @@ async def start_handler(msg: Message) -> None:
     await msg.answer(
         f'Привет, <b>{msg.from_user.full_name}</b>!\nЯ помогу найти тебе пару или друзей. 👫',
         parse_mode='HTML',
-        reply_markup=lets_start_keyboard()
+        reply_markup=lets_start_keyboard(),
     )
 
 
 @router.message(Command('help'))
 async def help_handler(msg: Message) -> None:
     await msg.answer(
-        f'Вы нажали команду /help',
+        'Вы нажали команду /help',
         parse_mode='HTML',
     )

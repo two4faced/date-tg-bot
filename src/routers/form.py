@@ -25,10 +25,7 @@ async def get_name(msg: Message, state: FSMContext):
 @router.message(FormStates.age)
 async def get_age(msg: Message, state: FSMContext):
     await state.update_data(age=msg.text)
-    await msg.answer(
-        'Теперь определимся с полом',
-        reply_markup=gender_keyboard()
-    )
+    await msg.answer('Теперь определимся с полом', reply_markup=gender_keyboard())
     await state.set_state(FormStates.gender)
 
 
@@ -42,12 +39,12 @@ async def get_gender(msg: Message, state: FSMContext):
     await msg.answer('Из какого ты города или в каком городе ищешь друзей?')
     await state.set_state(FormStates.city)
 
+
 @router.message(FormStates.city)
 async def get_city(msg: Message, state: FSMContext):
     await state.update_data(city=msg.text)
     await msg.answer(
-        'Теперь расскажи пару слов о себе и кого хочешь найти',
-        reply_markup=no_desc_keyboard()
+        'Теперь расскажи пару слов о себе и кого хочешь найти', reply_markup=no_desc_keyboard()
     )
     await state.set_state(FormStates.description)
 
@@ -72,11 +69,12 @@ async def get_photo(msg: Message, state: FSMContext):
     print(data)
     await msg.answer_photo(
         photo=data['photo'],
-        caption=f'{data["name"]}, {data["age"]}, {data["city"]} \n\n{data["description"]}'
+        caption=f'{data["name"]}, {data["age"]}, {data["city"]} \n\n{data["description"]}',
     )
 
     await state.clear()
 
+
 @router.message(FormStates.photo)
-async def get_photo(msg: Message):
+async def check_send_photo(msg: Message):
     await msg.answer('Отправь фото для анкеты')
