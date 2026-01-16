@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 
-from src.fsm.form_states import FormStates
+from src.states.form_states import FormStates
 from src.utils import gender_keyboard, no_desc_keyboard
 
 

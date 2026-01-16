@@ -1,11 +1,15 @@
 import asyncio
 import logging
+import sys
+from pathlib import Path
 
 from aiogram import Dispatcher, Bot
 
-from config import settings
+from src.config import settings
 from routers.commands import router as commands_router
 from routers.form import router as form_router
+
+sys.path.append(str(Path(__file__).parent.parent))
 
 bot_token = settings.BOT_TOKEN
 dp = Dispatcher()
